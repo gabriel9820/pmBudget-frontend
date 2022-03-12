@@ -1,17 +1,9 @@
 import { createGlobalStyle } from "styled-components";
 
-export const GlobalStyle = createGlobalStyle`
-  :root {
-    --primary: #543884;
-    --secondary: #9A77CF;
-    --white: #FFFFFF;
-    --green: #45C39D;
-    --red: #E52E4D;
-    --text-title: #363F5F;
-    --text-body: #969CB3;
-    --background: #F0F2F5;
-  }
-
+interface IProps {
+  isMenuOpen: boolean;
+}
+export const GlobalStyle = createGlobalStyle<IProps>`
   * {
     margin: 0;
     padding: 0;
@@ -29,13 +21,15 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background: var(--background);
+    background: ${({ theme }) => theme.colors.background};
+    margin-left: ${(props) => (props.isMenuOpen ? "17rem" : "4.5rem")};
     -webkit-font-smothing: antialiased;
+    transition: margin-left 0.4s;
   }
 
   body, input, textarea, button {
     font-family: 'Poppins', sans-serif;
-    font-weight: 400;
+    font-weight: 400;    
   }
   
   h1, h2, h3, h4, h5, h6, strong {
@@ -61,15 +55,17 @@ export const GlobalStyle = createGlobalStyle`
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 99;
   }
 
   .react-modal-content {
     width: 100%;
     max-width: 576px;
-    background: var(--background);
+    background: ${({ theme }) => theme.colors.background};
     padding: 3rem;
     position: relative;
     border-radius: 0.24rem;
+    z-index: 99;
   }
 
   .react-modal-close {

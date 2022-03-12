@@ -9,7 +9,7 @@ export const Container = styled.div`
     border-spacing: 0 0.5rem;
 
     th {
-      color: var(--text-body);
+      color: ${({ theme }) => theme.colors.textPrimary};
       font-weight: 600;
       padding: 1rem 2rem;
       text-align: left;
@@ -19,20 +19,23 @@ export const Container = styled.div`
     td {
       padding: 1rem 2rem;
       border: 0;
-      background: var(--white);
-      color: var(--text-body);
-      border-radius: 0.25rem;
+      background: ${({ theme }) => theme.colors.primary};
+      color: ${({ theme }) => theme.colors.textPrimary};
 
       &:first-child {
-        color: var(--text-title);
+        border-radius: 0.25rem 0 0 0.25rem;
+      }
+
+      &:last-child {
+        border-radius: 0 0.25rem 0.25rem 0;
       }
 
       &.income {
-        color: var(--green);
+        color: ${({ theme }) => theme.colors.green};
       }
 
       &.expense {
-        color: var(--red);
+        color: ${({ theme }) => theme.colors.red};
       }
     }
   }

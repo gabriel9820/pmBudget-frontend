@@ -3,7 +3,7 @@ import { darken, transparentize } from "polished";
 
 export const Container = styled.form`
   h2 {
-    color: var(--text-title);
+    color: ${({ theme }) => theme.colors.textPrimary};
     font-size: 1.5rem;
     margin-bottom: 2rem;
   }
@@ -12,8 +12,8 @@ export const Container = styled.form`
     width: 100%;
     padding: 0 1.5rem;
     height: 4rem;
-    background: var(--green);
-    color: var(--white);
+    background: ${({ theme }) => theme.colors.secondary};
+    color: ${({ theme }) => theme.colors.textSecondary};
     border-radius: 0.25rem;
     border: 0;
     font-size: 1rem;
@@ -39,18 +39,19 @@ interface ITransactionTypeButtonProps {
   buttonType: "income" | "expense";
 }
 
-const TransactionTypeButtonColors = {
-  income: "#45C39D",
-  expense: "#E52E4D",
-};
-
 export const TransactionTypeButton = styled.button<ITransactionTypeButtonProps>`
   height: 4rem;
-  border: 1px solid #d7d7d7;
+  border: ${({ theme, ...props }) =>
+    `1px solid ${
+      props.buttonType === "income" ? theme.colors.green : theme.colors.red
+    }`};
   border-radius: 0.25rem;
-  background: ${(props) =>
+  background: ${({ theme, ...props }) =>
     props.isActive
-      ? transparentize(0.9, TransactionTypeButtonColors[props.buttonType])
+      ? transparentize(
+          0.8,
+          props.buttonType === "income" ? theme.colors.green : theme.colors.red
+        )
       : "transparent"};
   display: flex;
   align-items: center;
@@ -58,7 +59,11 @@ export const TransactionTypeButton = styled.button<ITransactionTypeButtonProps>`
   transition: border-color 0.2s;
 
   &:hover {
-    border-color: ${darken(0.1, "#d7d7d7")};
+    border-color: ${({ theme, ...props }) =>
+      darken(
+        0.2,
+        props.buttonType === "income" ? theme.colors.green : theme.colors.red
+      )};
   }
 
   img {
@@ -70,6 +75,6 @@ export const TransactionTypeButton = styled.button<ITransactionTypeButtonProps>`
     display: inline-block;
     margin-left: 1rem;
     font-size: 1rem;
-    color: var(--text-title);
+    color: ${({ theme }) => theme.colors.textPrimary};
   }
 `;

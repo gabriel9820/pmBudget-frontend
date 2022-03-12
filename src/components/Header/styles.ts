@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.header`
-  background: var(--primary);
+  background: ${({ theme }) => theme.colors.background};
 `;
 
 export const Content = styled.div`
@@ -10,7 +10,7 @@ export const Content = styled.div`
   padding: 2rem 1rem 12rem;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
 
   img {
     width: 12rem;
@@ -18,8 +18,8 @@ export const Content = styled.div`
 
   button {
     font-size: 1rem;
-    color: var(--white);
-    background: var(--secondary);
+    color: ${({ theme }) => theme.colors.textPrimary};
+    background: ${({ theme }) => theme.colors.primary};
     border: 0;
     padding: 0 1rem;
     border-radius: 0.25rem;

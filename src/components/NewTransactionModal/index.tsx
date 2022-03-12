@@ -70,7 +70,7 @@ export const NewTransactionModal: React.FC<IProps> = ({
       </button>
 
       <Container onSubmit={handleSubmit(handleCreateNewTransaction)}>
-        <h2>Cadastrar Lançamento</h2>
+        <h2>Cadastrar Transação</h2>
 
         <CustomInput
           register={register("title")}

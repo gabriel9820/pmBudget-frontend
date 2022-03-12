@@ -1,4 +1,4 @@
-import logo from "../../assets/logo.png";
+//import logo from "../../assets/logo.png";
 
 import { Container, Content } from "./styles";
 
@@ -10,9 +10,9 @@ export const Header: React.FC<IProps> = ({ onOpenNewTransactionModal }) => {
   return (
     <Container>
       <Content>
-        <img src={logo} alt="pmBudget" />
+        {/* <img src={logo} alt="pmBudget" /> */}
         <button type="button" onClick={onOpenNewTransactionModal}>
-          Novo Lançamento
+          Nova Transação
         </button>
       </Content>
     </Container>

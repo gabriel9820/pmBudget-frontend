@@ -7,10 +7,10 @@ export const Container = styled.div`
   margin-top: -10rem;
 
   div {
-    background: var(--white);
+    background: ${({ theme }) => theme.colors.primary};
     padding: 1.5rem 2rem;
     border-radius: 0.25rem;
-    color: var(--text-title);
+    color: ${({ theme }) => theme.colors.textPrimary};
 
     header {
       display: flex;
@@ -27,8 +27,8 @@ export const Container = styled.div`
     }
 
     &.highlighted-background {
-      background: var(--green);
-      color: var(--white);
+      background: ${({ theme }) => theme.colors.secondary};
+      color: ${({ theme }) => theme.colors.textSecondary};
     }
   }
 
