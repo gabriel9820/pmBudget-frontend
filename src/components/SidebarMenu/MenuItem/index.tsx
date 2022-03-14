@@ -1,4 +1,4 @@
-import { ReactElement, useEffect, useState } from "react";
+import { ReactElement } from "react";
 
 import { ContainerSubItem, Item, SubItem } from "./styles";
 
@@ -17,32 +17,45 @@ interface IMenuSubItem {
 interface IProps {
   item: IMenuItem;
   isMenuOpen: boolean;
+  isActive: boolean;
+  onClick: (label: string) => void;
 }
 
-export const MenuItem: React.FC<IProps> = ({ item, isMenuOpen }) => {
-  const [showSubItens, setShowSubItens] = useState(false);
+export const MenuItem: React.FC<IProps> = ({
+  item,
+  isMenuOpen,
+  isActive,
+  onClick,
+}) => {
+  const handleItemClick = () => {
+    onClick(item.label);
+  };
 
-  useEffect(() => {
+  const handleSubItemClick = () => {
     if (!isMenuOpen) {
-      setShowSubItens(false);
+      onClick("");
     }
-  }, [isMenuOpen]);
+  };
 
   return (
     <li style={{ position: "relative" }}>
-      <Item
-        to={item.path ? item.path : ""}
-        onClick={() => setShowSubItens(!showSubItens)}
-      >
+      <Item to={item.path ? item.path : "#"} onClick={handleItemClick}>
         {item.icon}
         {isMenuOpen && <span>{item.label}</span>}
       </Item>
 
-      {showSubItens && (
-        <ContainerSubItem>
-          {item.subItens?.map((subItem, index) => (
+      {isActive && item.subItens && (
+        <ContainerSubItem
+          className={isMenuOpen ? "menu-open" : "menu-condensed"}
+        >
+          {item.subItens.map((subItem, index) => (
             <li>
-              <SubItem key={index} to={subItem.path}>
+              <SubItem
+                key={index}
+                className={isMenuOpen ? "menu-open" : "menu-condensed"}
+                to={subItem.path}
+                onClick={handleSubItemClick}
+              >
                 <span>{subItem.label}</span>
               </SubItem>
             </li>

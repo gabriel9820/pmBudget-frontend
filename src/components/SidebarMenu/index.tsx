@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoClose } from "react-icons/io5";
@@ -7,7 +8,6 @@ import { FaAtom, FaClipboardList } from "react-icons/fa";
 import logo from "../../assets/logo.png";
 
 import { Container, TopContainer } from "./styles";
-
 import { IMenuItem, MenuItem } from "./MenuItem";
 
 interface IProps {
@@ -21,8 +21,10 @@ const menus: IMenuItem[] = [
     icon: <FaClipboardList />,
     label: "Cadastros",
     subItens: [
-      { label: "Categoria", path: "/categoria" },
-      { label: "Cartão", path: "/cartao" },
+      { label: "Categorias", path: "/categorias" },
+      { label: "Cartões", path: "/cartoes" },
+      { label: "Despesas Fixas", path: "/despesas-fixas" },
+      { label: "Receitas Fixas", path: "/receitas-fixas" },
     ],
   },
   {
@@ -36,6 +38,16 @@ const menus: IMenuItem[] = [
 ];
 
 export const SidebarMenu: React.FC<IProps> = ({ isOpen, setIsOpen }) => {
+  const [activeItem, setActiveItem] = useState("");
+
+  const handleItemClick = (label: string) => {
+    if (label === activeItem) {
+      setActiveItem("");
+    } else {
+      setActiveItem(label);
+    }
+  };
+
   return (
     <Container isMenuOpen={isOpen}>
       <TopContainer>
@@ -52,7 +64,13 @@ export const SidebarMenu: React.FC<IProps> = ({ isOpen, setIsOpen }) => {
       <BrowserRouter>
         <ul>
           {menus.map((item, index) => (
-            <MenuItem key={index} item={item} isMenuOpen={isOpen} />
+            <MenuItem
+              key={index}
+              item={item}
+              isMenuOpen={isOpen}
+              isActive={item.label === activeItem}
+              onClick={handleItemClick}
+            />
           ))}
         </ul>
       </BrowserRouter>
