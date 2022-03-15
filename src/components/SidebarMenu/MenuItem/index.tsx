@@ -49,9 +49,8 @@ export const MenuItem: React.FC<IProps> = ({
           className={isMenuOpen ? "menu-open" : "menu-condensed"}
         >
           {item.subItens.map((subItem, index) => (
-            <li>
+            <li key={index}>
               <SubItem
-                key={index}
                 className={isMenuOpen ? "menu-open" : "menu-condensed"}
                 to={subItem.path}
                 onClick={handleSubItemClick}

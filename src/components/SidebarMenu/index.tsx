@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { BrowserRouter } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoClose } from "react-icons/io5";
 import { AiFillHome } from "react-icons/ai";
@@ -61,19 +60,17 @@ export const SidebarMenu: React.FC<IProps> = ({ isOpen, setIsOpen }) => {
         </span>
       </TopContainer>
 
-      <BrowserRouter>
-        <ul>
-          {menus.map((item, index) => (
-            <MenuItem
-              key={index}
-              item={item}
-              isMenuOpen={isOpen}
-              isActive={item.label === activeItem}
-              onClick={handleItemClick}
-            />
-          ))}
-        </ul>
-      </BrowserRouter>
+      <ul>
+        {menus.map((item, index) => (
+          <MenuItem
+            key={index}
+            item={item}
+            isMenuOpen={isOpen}
+            isActive={item.label === activeItem}
+            onClick={handleItemClick}
+          />
+        ))}
+      </ul>
     </Container>
   );
 };

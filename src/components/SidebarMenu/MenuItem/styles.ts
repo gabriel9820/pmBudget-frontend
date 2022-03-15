@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import { Link } from "react-router-dom";
 import { transparentize } from "polished";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 export const Item = styled(Link)`
   display: flex;

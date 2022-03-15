@@ -6,13 +6,16 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import close from "../../assets/close.svg";
 import income from "../../assets/income.svg";
 import expense from "../../assets/expense.svg";
+
 import {
   Container,
   TransactionTypeButton,
   TransactionTypeContainer,
 } from "./styles";
-import { INewTransactionFormFields, newTransactionSchema } from "./schema";
 import { CustomInput } from "../CustomInput";
+import { Button } from "../Button";
+
+import { INewTransactionFormFields, newTransactionSchema } from "./schema";
 import { createTransactionAsync } from "../../services/transactions.service";
 import { apiExceptionHandler } from "../../utils/exception-handler";
 
@@ -113,7 +116,7 @@ export const NewTransactionModal: React.FC<IProps> = ({
           placeholder="Categoria"
         />
 
-        <button type="submit">Cadastrar</button>
+        <Button>Cadastrar</Button>
       </Container>
     </Modal>
   );

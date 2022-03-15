@@ -1,9 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
-interface IProps {
-  isMenuOpen: boolean;
-}
-export const GlobalStyle = createGlobalStyle<IProps>`
+export const GlobalStyle = createGlobalStyle`
   * {
     margin: 0;
     padding: 0;
@@ -22,9 +19,7 @@ export const GlobalStyle = createGlobalStyle<IProps>`
 
   body {
     background: ${({ theme }) => theme.colors.background};
-    margin-left: ${(props) => (props.isMenuOpen ? "17rem" : "4.5rem")};
     -webkit-font-smothing: antialiased;
-    transition: margin-left 0.4s;
   }
 
   body, input, textarea, button {
@@ -38,6 +33,16 @@ export const GlobalStyle = createGlobalStyle<IProps>`
 
   button {
     cursor: pointer;
+  }
+
+  ::-webkit-scrollbar {
+    width: 0.8rem;
+    height: 0.8rem;
+  }
+ 
+  ::-webkit-scrollbar-thumb {
+    background: ${({ theme }) => theme.colors.primary}; 
+    border-radius: 0.25rem;
   }
 
   [disabled] {
