@@ -4,7 +4,8 @@ import { IoClose } from "react-icons/io5";
 import { AiFillHome } from "react-icons/ai";
 import { FaAtom, FaClipboardList } from "react-icons/fa";
 
-import logo from "../../assets/logo.png";
+import darkLogo from "../../assets/darkLogo.png";
+import lightLogo from "../../assets/lightLogo.png";
 
 import { Container, TopContainer } from "./styles";
 import { IMenuItem, MenuItem } from "./MenuItem";
@@ -52,7 +53,7 @@ export const SidebarMenu: React.FC<IProps> = ({ isOpen, setIsOpen }) => {
       <TopContainer>
         {isOpen && (
           <div>
-            <img src={logo} alt="pmBudget" />
+            <img src={true ? darkLogo : lightLogo} alt="pmBudget" />
           </div>
         )}
         <span onClick={() => setIsOpen(!isOpen)}>

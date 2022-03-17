@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 
-import logo from "../../assets/logo.png";
+import darkLogo from "../../assets/darkLogo.png";
+import lightLogo from "../../assets/lightLogo.png";
 
 import { Container } from "./styles";
 import { Button } from "../Button";
@@ -17,7 +18,7 @@ export const Login = () => {
   });
   return (
     <Container>
-      <img src={logo} alt="pmBudget" />
+      <img src={true ? darkLogo : lightLogo} alt="pmBudget" />
 
       <CustomInput
         register={register("username")}
