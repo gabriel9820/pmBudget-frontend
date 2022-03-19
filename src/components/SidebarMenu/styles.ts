@@ -8,13 +8,17 @@ export const Container = styled.div<IMenuProps>`
   position: fixed;
   top: 0;
   left: 0;
-  width: ${(props) => (props.isMenuOpen ? "17rem" : "4.5rem")};
+  width: ${(props) => (props.isMenuOpen ? "17rem" : "5rem")};
   height: 100%;
   z-index: 98;
   background: ${({ theme }) => theme.colors.primary};
   padding: 1rem;
   font-size: 0.95rem;
   transition: width 0.4s;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   li {
     list-style: none;
@@ -34,7 +38,7 @@ export const Header = styled.header`
 
   svg {
     font-size: 1.7rem;
-    margin-left: 0.4rem;
+    margin-left: 0.6rem;
     color: ${({ theme }) => theme.colors.textPrimary};
     cursor: pointer;
   }

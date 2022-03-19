@@ -17,6 +17,7 @@ export const Item = styled(Link)`
 
   svg {
     font-size: 1.7rem;
+    margin-left: 0.25rem;
   }
 
   span {
