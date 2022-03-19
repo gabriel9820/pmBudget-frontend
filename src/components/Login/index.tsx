@@ -1,24 +1,24 @@
+import { useContext } from "react";
+import { ThemeContext } from "styled-components";
 import { useForm } from "react-hook-form";
-
-import darkLogo from "../../assets/darkLogo.png";
-import lightLogo from "../../assets/lightLogo.png";
 
 import { Container } from "./styles";
 import { Button } from "../Button";
 import { CustomInput } from "../CustomInput";
 
 export const Login = () => {
+  const { logo } = useContext(ThemeContext);
   const {
     register,
-    handleSubmit,
-    reset,
-    formState: { errors, isSubmitSuccessful },
+    //handleSubmit,
+    //reset,
+    formState: { errors /*isSubmitSuccessful*/ },
   } = useForm({
     //resolver: yupResolver(newTransactionSchema),
   });
   return (
     <Container>
-      <img src={true ? darkLogo : lightLogo} alt="pmBudget" />
+      <img src={logo} alt="pmBudget" />
 
       <CustomInput
         register={register("username")}

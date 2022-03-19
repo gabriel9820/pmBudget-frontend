@@ -1,9 +1,9 @@
+import { api } from "./api";
 import { IApiResponse } from "../models/api.model";
 import {
   ITransactionInputModel,
   ITransactionOutputModel,
 } from "../models/transaction.model";
-import { api } from "./api";
 
 export const getAllTransactionsAsync = async () => {
   return api.get<IApiResponse<ITransactionOutputModel[]>>("transactions");

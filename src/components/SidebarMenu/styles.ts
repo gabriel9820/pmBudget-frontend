@@ -21,7 +21,7 @@ export const Container = styled.div<IMenuProps>`
   }
 `;
 
-export const TopContainer = styled.div`
+export const Header = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -39,3 +39,5 @@ export const TopContainer = styled.div`
     cursor: pointer;
   }
 `;
+
+export const Footer = styled.footer``;

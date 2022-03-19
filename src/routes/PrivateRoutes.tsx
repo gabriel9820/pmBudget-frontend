@@ -1,7 +1,7 @@
 import { Navigate, RouteObject } from "react-router-dom";
 
 import { PrivateLayout } from "../layout/PrivateLayout";
-import Dashboard from "../pages/Dashboard";
+import { DashboardPage } from "../pages/Dashboard";
 
 export const PrivateRoutes = (isLoggedIn: boolean): RouteObject => ({
   path: "/",
@@ -9,7 +9,7 @@ export const PrivateRoutes = (isLoggedIn: boolean): RouteObject => ({
   children: [
     {
       path: "/",
-      element: <Dashboard />,
+      element: <DashboardPage />,
     },
     {
       path: "/categorias",

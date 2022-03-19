@@ -4,7 +4,7 @@ import { Dashboard } from "../../components/Dashboard";
 import { Header } from "../../components/Header";
 import { NewTransactionModal } from "../../components/NewTransactionModal";
 
-const DashboardPage = () => {
+export const DashboardPage = () => {
   const [isNewTransactionModalOpen, setIsNewTransactionModalOpen] =
     useState(false);
 
@@ -29,5 +29,3 @@ const DashboardPage = () => {
     </>
   );
 };
-
-export default DashboardPage;

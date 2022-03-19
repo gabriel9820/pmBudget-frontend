@@ -1,43 +1,23 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoClose } from "react-icons/io5";
-import { AiFillHome } from "react-icons/ai";
-import { FaAtom, FaClipboardList } from "react-icons/fa";
+import { ThemeContext } from "styled-components";
 
-import darkLogo from "../../assets/darkLogo.png";
-import lightLogo from "../../assets/lightLogo.png";
+import { Container, Footer, Header } from "./styles";
+import { MenuItem } from "./MenuItem";
 
-import { Container, TopContainer } from "./styles";
-import { IMenuItem, MenuItem } from "./MenuItem";
+import { menus } from "./menus";
+import { switchTheme } from "../../store/preferences/actions";
+import { useAppDispatch } from "../../store";
 
 interface IProps {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
 }
 
-const menus: IMenuItem[] = [
-  { icon: <AiFillHome />, label: "Dashboard", path: "/" },
-  {
-    icon: <FaClipboardList />,
-    label: "Cadastros",
-    subItens: [
-      { label: "Categorias", path: "/categorias" },
-      { label: "Cartões", path: "/cartoes" },
-      { label: "Despesas Fixas", path: "/despesas-fixas" },
-      { label: "Receitas Fixas", path: "/receitas-fixas" },
-    ],
-  },
-  {
-    icon: <FaAtom />,
-    label: "Teste",
-    subItens: [
-      { label: "SubItem 1", path: "/sub1" },
-      { label: "SubItem 2", path: "/sub2" },
-    ],
-  },
-];
-
 export const SidebarMenu: React.FC<IProps> = ({ isOpen, setIsOpen }) => {
+  const dispatch = useAppDispatch();
+  const { logo } = useContext(ThemeContext);
   const [activeItem, setActiveItem] = useState("");
 
   const handleItemClick = (label: string) => {
@@ -48,18 +28,23 @@ export const SidebarMenu: React.FC<IProps> = ({ isOpen, setIsOpen }) => {
     }
   };
 
+  const toggleTheme = (isChecked: boolean) => {
+    const theme = isChecked ? "dark" : "light";
+    dispatch(switchTheme(theme));
+  };
+
   return (
     <Container isMenuOpen={isOpen}>
-      <TopContainer>
+      <Header>
         {isOpen && (
           <div>
-            <img src={true ? darkLogo : lightLogo} alt="pmBudget" />
+            <img src={logo} alt="pmBudget" />
           </div>
         )}
         <span onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? <IoClose /> : <GiHamburgerMenu />}
         </span>
-      </TopContainer>
+      </Header>
 
       <ul>
         {menus.map((item, index) => (
@@ -72,6 +57,14 @@ export const SidebarMenu: React.FC<IProps> = ({ isOpen, setIsOpen }) => {
           />
         ))}
       </ul>
+
+      <Footer>
+        <input
+          type="checkbox"
+          defaultChecked={true}
+          onChange={(event) => toggleTheme(event.target.checked)}
+        />
+      </Footer>
     </Container>
   );
 };

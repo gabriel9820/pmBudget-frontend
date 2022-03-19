@@ -14,5 +14,6 @@ declare module "styled-components" {
       red: string;
       background: string;
     };
+    logo: string;
   }
 }
