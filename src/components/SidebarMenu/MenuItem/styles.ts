@@ -35,7 +35,7 @@ export const ContainerSubItem = styled.ul`
     left: 100%;
     top: 0;
     border: none;
-    background-color: ${({ theme }) => theme.colors.primary};
+    background: ${({ theme }) => theme.colors.primary};
   }
 `;
 

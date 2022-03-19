@@ -12,6 +12,7 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
+import { IPreferencesReducerProps } from "./preferences/constants";
 import preferencesReducer from "./preferences";
 
 const preferencesPersistConfig = {
@@ -19,9 +20,14 @@ const preferencesPersistConfig = {
   storage,
 };
 
+const preferencesPersistedReducer = persistReducer<IPreferencesReducerProps>(
+  preferencesPersistConfig,
+  preferencesReducer
+);
+
 const store = configureStore({
   reducer: {
-    preferences: persistReducer(preferencesPersistConfig, preferencesReducer),
+    preferences: preferencesPersistedReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
