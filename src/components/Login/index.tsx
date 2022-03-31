@@ -1,23 +1,46 @@
 import { useContext } from "react";
 import { ThemeContext } from "styled-components";
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 import { Container } from "./styles";
 import { Button } from "../Button";
 import { CustomInput } from "../CustomInput";
 
+import { loginSchema } from "./schema";
+import { apiExceptionHandler } from "../../utils/exception-handler";
+import { loginAsync } from "../../services/auth.service";
+import { useAppDispatch } from "../../store";
+import { loginUser } from "../../store/auth/actions";
+
 export const Login = () => {
   const { logo } = useContext(ThemeContext);
+  const dispatch = useAppDispatch();
+
   const {
     register,
-    //handleSubmit,
-    //reset,
-    formState: { errors /*isSubmitSuccessful*/ },
+    handleSubmit,
+    formState: { errors },
   } = useForm({
-    //resolver: yupResolver(newTransactionSchema),
+    resolver: yupResolver(loginSchema),
   });
+
+  const handleLogin = async (data: any) => {
+    try {
+      const { data: apiResponse } = await loginAsync(
+        data.username,
+        data.password
+      );
+
+      console.log(apiResponse);
+      dispatch(loginUser(apiResponse.data.user));
+    } catch (error) {
+      apiExceptionHandler(error);
+    }
+  };
+
   return (
-    <Container>
+    <Container onSubmit={handleSubmit(handleLogin)}>
       <img src={logo} alt="pmBudget" />
 
       <CustomInput

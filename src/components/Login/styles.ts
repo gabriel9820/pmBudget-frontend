@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const Container = styled.form`
   /* display: flex; */
   /* flex-direction: column; */
   /* align-items: center; */
@@ -19,7 +19,7 @@ export const Container = styled.div`
     cursor: pointer;
   }
 
-  p {
+  & > p {
     margin-top: 1rem;
     font-size: 0.9rem;
     text-align: center;

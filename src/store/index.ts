@@ -12,6 +12,7 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
+import authReducer from "./auth";
 import { IPreferencesReducerProps } from "./preferences/constants";
 import preferencesReducer from "./preferences";
 
@@ -27,6 +28,7 @@ const preferencesPersistedReducer = persistReducer<IPreferencesReducerProps>(
 
 const store = configureStore({
   reducer: {
+    auth: authReducer,
     preferences: preferencesPersistedReducer,
   },
   middleware: (getDefaultMiddleware) =>
