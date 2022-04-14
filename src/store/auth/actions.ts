@@ -1,6 +1,7 @@
 import { createAction } from "@reduxjs/toolkit";
 
-import { IAuthenticatedUserOutputModel } from "../../models/login.model";
+import { ILoginOutputModel } from "../../models/login.model";
 
-export const loginUser =
-  createAction<IAuthenticatedUserOutputModel>("LOGIN_USER");
+export const loginUser = createAction<ILoginOutputModel>("LOGIN_USER");
+
+export const logoutUser = createAction("LOGOUT_USER");

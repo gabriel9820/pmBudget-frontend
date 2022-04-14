@@ -32,8 +32,8 @@ export const Login = () => {
         data.password
       );
 
-      console.log(apiResponse);
-      dispatch(loginUser(apiResponse.data.user));
+      dispatch(loginUser(apiResponse.data));
+      localStorage.setItem("acessToken", apiResponse.data.accessToken);
     } catch (error) {
       apiExceptionHandler(error);
     }

@@ -46,7 +46,7 @@ export const NewTransactionModal: React.FC<IProps> = ({
 
   const handleCreateNewTransaction = async (data: any) => {
     try {
-      const transaction = { ...data, type: type /*=== "income" ? 1 : 2 */ };
+      const transaction = { ...data, type: type === "income" ? 1 : 2 };
       console.log(transaction);
 
       await createTransactionAsync(transaction);
