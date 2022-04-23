@@ -4,7 +4,10 @@ import { Column } from "react-table";
 import { PageTitle } from "../../components/PageTitle";
 import { Table } from "../../components/Table";
 
-import { ICategoryOutputModel } from "../../models/category.model";
+import {
+  ICategoryInputModel,
+  ICategoryOutputModel,
+} from "../../models/category.model";
 import { getAllCategoriesAsync } from "../../services/categories.service";
 
 const columns: Column<ICategoryOutputModel>[] = [
@@ -26,10 +29,23 @@ export const CategoriesPage = () => {
     getAllCategories();
   }, []);
 
+  const editCategory = (data: ICategoryInputModel) => {
+    console.log(data);
+  };
+
+  const deleteCategory = (data: ICategoryInputModel) => {
+    console.log(data);
+  };
+
   return (
     <div>
       <PageTitle>Categorias</PageTitle>
-      <Table columns={columns} data={categories} />
+      <Table
+        columns={columns}
+        data={categories}
+        onEditClick={(data) => editCategory(data)}
+        onDeleteClick={(data) => deleteCategory(data)}
+      />
     </div>
   );
 };

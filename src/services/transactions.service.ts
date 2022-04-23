@@ -19,3 +19,7 @@ export const createTransactionAsync = async (data: ITransactionInputModel) => {
     data
   );
 };
+
+export const deleteTransactionByIdAsync = async (id: number) => {
+  return api.delete<IApiResponse<void>>(`transactions/${id}`);
+};

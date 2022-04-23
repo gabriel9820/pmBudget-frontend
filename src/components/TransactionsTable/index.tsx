@@ -4,12 +4,17 @@ import { Column } from "react-table";
 import { ValueCell } from "./styles";
 import { Table } from "../Table";
 
-import { getAllTransactionsAsync } from "../../services/transactions.service";
+import {
+  deleteTransactionByIdAsync,
+  getAllTransactionsAsync,
+} from "../../services/transactions.service";
 import { formatDate, formatMoney } from "../../utils/format";
 import {
+  ITransactionInputModel,
   ITransactionOutputModel,
   TransactionType,
 } from "../../models/transaction.model";
+import { apiExceptionHandler } from "../../utils/exception-handler";
 
 const columns: Column<ITransactionOutputModel>[] = [
   {
@@ -51,5 +56,19 @@ export const TransactionsTable = () => {
     getAllTransactions();
   }, []);
 
-  return <Table columns={columns} data={transactions} />;
+  const deleteTransaction = async (data: ITransactionInputModel) => {
+    try {
+      await deleteTransactionByIdAsync(data.id);
+    } catch (error) {
+      apiExceptionHandler(error);
+    }
+  };
+
+  return (
+    <Table
+      columns={columns}
+      data={transactions}
+      onDeleteClick={(data) => deleteTransaction(data)}
+    />
+  );
 };

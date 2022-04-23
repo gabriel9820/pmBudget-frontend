@@ -1,15 +1,45 @@
-import { useTable } from "react-table";
+import { useMemo } from "react";
+import { Column, Row, useTable } from "react-table";
 
 import { Container } from "./styles";
+import { ActionsColumn } from "./ActionsColumn";
 
 interface IProps {
-  columns: any[];
+  columns: Column<any>[];
   data: any[];
+  onEditClick?: (item: any) => void;
+  onDeleteClick?: (item: any) => void;
 }
 
-export const Table: React.FC<IProps> = ({ columns, data }) => {
+export const Table: React.FC<IProps> = ({
+  columns,
+  data,
+  onEditClick,
+  onDeleteClick,
+}) => {
+  const tableColumns = useMemo(
+    () => [
+      ...columns,
+      {
+        id: "actions",
+        width: 50,
+        Cell: ({ row }: { row: Row }) => (
+          <ActionsColumn
+            onEditClick={
+              onEditClick ? () => onEditClick(row.original) : undefined
+            }
+            onDeleteClick={
+              onDeleteClick ? () => onDeleteClick(row.original) : undefined
+            }
+          />
+        ),
+      },
+    ],
+    [columns, onEditClick, onDeleteClick]
+  );
+
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable({ columns, data });
+    useTable({ columns: tableColumns, data });
 
   return (
     <Container>
