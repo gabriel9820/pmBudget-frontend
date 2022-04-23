@@ -1,4 +1,3 @@
-import { FC } from "react";
 import { useTable } from "react-table";
 
 import { Container } from "./styles";
@@ -8,7 +7,7 @@ interface IProps {
   data: any[];
 }
 
-export const Table: FC<IProps> = ({ columns, data }) => {
+export const Table: React.FC<IProps> = ({ columns, data }) => {
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable({ columns, data });
 
