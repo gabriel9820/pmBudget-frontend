@@ -46,8 +46,10 @@ export const NewTransactionModal: React.FC<IProps> = ({
 
   const handleCreateNewTransaction = async (data: any) => {
     try {
-      const transaction = { ...data, type: type === "income" ? 1 : 2 };
-      console.log(transaction);
+      const transaction = {
+        ...data,
+        type: type === "income" ? 1 : 2,
+      };
 
       await createTransactionAsync(transaction);
 
@@ -74,6 +76,13 @@ export const NewTransactionModal: React.FC<IProps> = ({
 
       <Container onSubmit={handleSubmit(handleCreateNewTransaction)}>
         <h2>Cadastrar Transação</h2>
+
+        <CustomInput
+          register={register("date")}
+          errors={errors.date}
+          placeholder="Data"
+          type="date"
+        />
 
         <CustomInput
           register={register("title")}

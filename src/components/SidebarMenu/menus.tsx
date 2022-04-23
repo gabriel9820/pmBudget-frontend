@@ -9,10 +9,10 @@ export const menus: IMenuItem[] = [
     icon: <FaClipboardList />,
     label: "Cadastros",
     subItens: [
-      { label: "Categorias", path: "/categorias" },
-      { label: "Cartões", path: "/cartoes" },
-      { label: "Despesas Fixas", path: "/despesas-fixas" },
-      { label: "Receitas Fixas", path: "/receitas-fixas" },
+      { label: "Categorias", path: "/categories" },
+      { label: "Cartões de Crédito", path: "/credit-cards" },
+      { label: "Despesas Fixas", path: "/fixed-expenses" },
+      { label: "Receitas Fixas", path: "/fixed-incomes" },
     ],
   },
   {

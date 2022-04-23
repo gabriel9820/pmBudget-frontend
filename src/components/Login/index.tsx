@@ -7,7 +7,7 @@ import { Container } from "./styles";
 import { Button } from "../Button";
 import { CustomInput } from "../CustomInput";
 
-import { loginSchema } from "./schema";
+import { ILoginFormFields, loginSchema } from "./schema";
 import { apiExceptionHandler } from "../../utils/exception-handler";
 import { loginAsync } from "../../services/auth.service";
 import { useAppDispatch } from "../../store";
@@ -21,8 +21,12 @@ export const Login = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<ILoginFormFields>({
     resolver: yupResolver(loginSchema),
+    defaultValues: {
+      username: "string",
+      password: "Teste@123",
+    },
   });
 
   const handleLogin = async (data: any) => {
@@ -53,6 +57,7 @@ export const Login = () => {
         register={register("password")}
         errors={errors.password}
         placeholder="Senha"
+        type="password"
       />
 
       <span>Esqueceu sua senha?</span>

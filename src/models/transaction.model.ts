@@ -1,5 +1,6 @@
 interface ITransaction {
   id: number;
+  date: Date;
   title: string;
   type: TransactionType;
   value: number;

@@ -1,7 +1,7 @@
 import { Navigate, RouteObject } from "react-router-dom";
 
 import { PublicLayout } from "../layout/PublicLayout";
-import { Login } from "../components/Login";
+import { LoginPage } from "../pages/Login";
 
 export const PublicRoutes = (isLoggedIn: boolean): RouteObject => ({
   path: "/",
@@ -9,7 +9,7 @@ export const PublicRoutes = (isLoggedIn: boolean): RouteObject => ({
   children: [
     {
       path: "/login",
-      element: <Login />,
+      element: <LoginPage />,
     },
     {
       path: "/registrar",

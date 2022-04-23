@@ -1,6 +1,10 @@
 import * as yup from "yup";
 
 export const newTransactionSchema = yup.object().shape({
+  date: yup
+    .date()
+    .required("Data é obrigatório")
+    .typeError("Data deve ser uma data válida"),
   title: yup
     .string()
     .required("Título é obrigatório")
@@ -17,6 +21,7 @@ export const newTransactionSchema = yup.object().shape({
 });
 
 export interface INewTransactionFormFields {
+  date: Date;
   title: string;
   value: number;
   category: string;

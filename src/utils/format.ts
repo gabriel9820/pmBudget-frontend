@@ -6,5 +6,5 @@ export const formatMoney = (value: number): string => {
 };
 
 export const formatDate = (value: Date): string => {
-  return new Intl.DateTimeFormat("pt-BR").format(value);
+  return new Intl.DateTimeFormat("pt-BR").format(new Date(value));
 };
