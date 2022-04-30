@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Modal from "react-modal";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import close from "../../assets/close.svg";
 import income from "../../assets/income.svg";
 import expense from "../../assets/expense.svg";
 
@@ -12,6 +10,7 @@ import {
   TransactionTypeButton,
   TransactionTypeContainer,
 } from "./styles";
+import { CustomModal } from "../CustomModal";
 import { CustomInput } from "../CustomInput";
 import { Button } from "../Button";
 
@@ -60,20 +59,7 @@ export const NewTransactionModal: React.FC<IProps> = ({
   };
 
   return (
-    <Modal
-      isOpen={isOpen}
-      onRequestClose={onRequestClose}
-      overlayClassName="react-modal-overlay"
-      className="react-modal-content"
-    >
-      <button
-        type="button"
-        className="react-modal-close"
-        onClick={onRequestClose}
-      >
-        <img src={close} alt="Fechar" />
-      </button>
-
+    <CustomModal isOpen={isOpen} onRequestClose={onRequestClose}>
       <Container onSubmit={handleSubmit(handleCreateNewTransaction)}>
         <h2>Cadastrar Transação</h2>
 
@@ -127,6 +113,6 @@ export const NewTransactionModal: React.FC<IProps> = ({
 
         <Button>Cadastrar</Button>
       </Container>
-    </Modal>
+    </CustomModal>
   );
 };
