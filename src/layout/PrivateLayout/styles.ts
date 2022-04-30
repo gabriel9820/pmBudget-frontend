@@ -7,5 +7,5 @@ interface IProps {
 export const Content = styled.div<IProps>`
   margin-left: ${(props) => (props.isMenuOpen ? "17rem" : "5rem")};
   transition: margin-left 0.4s;
-  padding: 3rem;
+  padding: 5rem 10rem;
 `;
