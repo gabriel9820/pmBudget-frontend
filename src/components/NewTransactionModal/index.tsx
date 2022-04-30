@@ -111,7 +111,7 @@ export const NewTransactionModal: React.FC<IProps> = ({
           placeholder="Categoria"
         />
 
-        <Button>Cadastrar</Button>
+        <Button fullWidth>Cadastrar</Button>
       </Container>
     </CustomModal>
   );

@@ -28,7 +28,7 @@ const columns: Column<ICategoryOutputModel>[] = [
 
 export const CategoriesPage = () => {
   const [categories, setCategories] = useState<ICategoryOutputModel[]>([]);
-  const [isCategoryModalOpen, setIsCategoryModalOpen] = useState(!false);
+  const [isCategoryModalOpen, setIsCategoryModalOpen] = useState(false);
 
   useEffect(() => {
     const getAllCategories = async () => {
@@ -57,7 +57,7 @@ export const CategoriesPage = () => {
 
   return (
     <div>
-      <PageTitle>Categorias</PageTitle>
+      <PageTitle onNewClick={handleOpenCategoryModal}>Categorias</PageTitle>
 
       <Table
         columns={columns}

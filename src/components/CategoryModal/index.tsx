@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
@@ -22,7 +22,7 @@ export const CategoryModal: React.FC<IProps> = ({ isOpen, onRequestClose }) => {
     register,
     handleSubmit,
     reset,
-    formState: { errors, isSubmitSuccessful },
+    formState: { errors },
   } = useForm<ICategoryFormFields>({
     resolver: yupResolver(categorySchema),
     defaultValues: {
@@ -30,26 +30,25 @@ export const CategoryModal: React.FC<IProps> = ({ isOpen, onRequestClose }) => {
     },
   });
 
-  useEffect(() => {
-    if (isSubmitSuccessful) {
-      reset();
-    }
-  }, [isSubmitSuccessful, reset]);
-
-  const handleCreateCategory = async (data: any) => {
+  const handleCreateCategory = async (data: ICategoryFormFields) => {
     try {
       const category = { ...data };
 
       await createCategoryAsync(category);
 
-      onRequestClose();
+      closeModal();
     } catch (error) {
       apiExceptionHandler(error);
     }
   };
 
+  const closeModal = () => {
+    reset();
+    onRequestClose();
+  };
+
   return (
-    <CustomModal isOpen={isOpen} onRequestClose={onRequestClose}>
+    <CustomModal isOpen={isOpen} onRequestClose={closeModal}>
       <Container onSubmit={handleSubmit(handleCreateCategory)}>
         <h2>Cadastrar Categoria</h2>
 
@@ -65,7 +64,7 @@ export const CategoryModal: React.FC<IProps> = ({ isOpen, onRequestClose }) => {
           label="Ativo"
         />
 
-        <Button>Cadastrar</Button>
+        <Button fullWidth>Cadastrar</Button>
       </Container>
     </CustomModal>
   );

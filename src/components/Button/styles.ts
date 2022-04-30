@@ -1,15 +1,18 @@
 import styled from "styled-components";
 
-export const Container = styled.button`
-  width: 100%;
+interface IProps {
+  fullWidth?: boolean;
+}
+
+export const Container = styled.button<IProps>`
+  width: ${({ fullWidth }) => (fullWidth ? "100%" : "auto")};
   padding: 0 1.5rem;
-  height: 4rem;
+  height: ${({ fullWidth }) => (fullWidth ? "4rem" : "3rem")};
   background: ${({ theme }) => theme.colors.secondary};
   color: ${({ theme }) => theme.colors.textSecondary};
   border-radius: 0.25rem;
   border: 0;
   font-size: 1rem;
-  margin-top: 1.5rem;
   font-weight: 600;
   transition: filter 0.2s;
 

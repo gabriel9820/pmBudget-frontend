@@ -12,6 +12,7 @@ export const categorySchema = yup.object().shape({
 });
 
 export interface ICategoryFormFields {
+  id: number;
   name: string;
   isActive: boolean;
 }
