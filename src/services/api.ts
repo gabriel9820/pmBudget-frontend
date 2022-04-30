@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const api = axios.create({
-  baseURL: "http://localhost:5047/api",
+  baseURL: "https://localhost:7047/api",
 });
 
 /* adiciona o accessToken em cada request */
