@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img alt="pmBudget" src="./src/assets/logo.png" style="background-color: #543884">
+  <img alt="pmBudget" src="./src/assets/darkLogo.png" style="background-color: #543884">
 </h1>
 
 <p align="center">
@@ -10,74 +10,83 @@
 
 <br />
 
-## :bookmark: Descrição
+## :bookmark: Description
 
 <br />
 
-O projeto em questão se trata de um sistema para auxiliar no planejamento do orçamento mensal de uma pessoa e tem como principal objetivo aprimorar os conhecimentos em todas as tecnologias utilizadas.
+The project in question is a system to assist in planning a person's monthly budget and its main objective is to improve knowledge in all the technologies used.
 
 <br />
 
-## :heavy_check_mark: Tabela de Conteúdos
+## :heavy_check_mark: Table of Contents
 
-- [:bookmark: Descrição](#bookmark-descrição)
-- [:heavy_check_mark: Tabela de Conteúdos](#heavy_check_mark-tabela-de-conteúdos)
-- [:bulb: Tecnologias Utilizadas](#bulb-tecnologias-utilizadas)
-- [:computer: Demonstração](#computer-demonstração)
-- [:wrench: Rodando o Projeto](#wrench-rodando-o-projeto)
-- [:memo: Licença](#memo-licença)
+- [:bookmark: Description](#bookmark-description)
+- [:heavy_check_mark: Table of Contents](#heavy_check_mark-table-of-contents)
+- [:bulb: Technologies](#bulb-technologies)
+- [:computer: Demonstration](#computer-demonstration)
+- [:wrench: Running the Project](#wrench-running-the-project)
+- [:memo: License](#memo-license)
 - [:wave: Social](#wave-social)
 
 <br />
 
-## :bulb: Tecnologias Utilizadas
+## :bulb: Technologies
 
 <br />
 
 - [React](https://pt-br.reactjs.org/)
 - [TypeScript](https://www.typescriptlang.org/)
-- [C#]()
-- [.NET Core]()
-- [Entity Framework]()
+- [C#](https://docs.microsoft.com/pt-br/dotnet/csharp/)
+- [.NET Core](https://docs.microsoft.com/pt-br/aspnet/core/)
+- [Entity Framework Core](https://docs.microsoft.com/pt-br/ef/core/)
+- [Docker](https://docs.docker.com/)
+- [PostgreSQL](https://www.postgresql.org/docs/)
 
 <br />
 
-## :computer: Demonstração
+## :computer: Demonstration
 
-[pmBudget - Github Pages](https://gabriel9820.github.io/pm-budget/)
-
-<br />
-
-## :wrench: Rodando o Projeto
+[pmBudget - ]()
 
 <br />
 
-- Clone o projeto em sua máquina;
+## :wrench: Running the Project
+
+<br />
+
+- Clone the projects on your machine;
 
 ```bash
-# Clonar o projeto
-$ git clone https://github.com/gabriel9820/pm-budget.git
+# Clone Frontend
+$ git clone https://github.com/gabriel9820/pmBudget-frontend.git
+
+# Clone Backend
+$ git clone https://github.com/gabriel9820/pmBudget-backend.git
 ```
 
-<strong> Para rodar o front-end basta seguir os passos abaixo: </strong>
+<strong> To run the frontend just follow the steps below: </strong>
 
-- Crie um arquivo `.env` no diretório raiz do projeto e copie as váriaveis de ambiente do arquivo `.env.example`, substituindo os valores pelos que você recebeu no cadastro anterior;
+- Create a `.env` file in the project root directory and copy the environment variables from the `.env.example` file, replacing the values
 
 ```bash
-# Instalar as dependências
+# Install Dependencies
 $ npm install
 
-# Iniciar o projeto
+# Run Project
 $ npm start
 ```
 
-<strong> Para rodar o back-end basta seguir os passos abaixo: </strong>
+<strong> To run the backend just follow the steps below: </strong>
 
+```bash
+# Run with Docker
+$ docker-compose up -d
+```
 <br />
 
-## :memo: Licença
+## :memo: License
 
-Este projeto está sob a licença [MIT](LICENSE).
+This project is under license [MIT](LICENSE).
 
 <br />
 
