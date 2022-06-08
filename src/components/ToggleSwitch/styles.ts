@@ -23,6 +23,11 @@ export const SwitchLabel = styled.label`
   gap: 10px;
   width: auto;
   cursor: pointer;
+
+  &:hover,
+  &:focus {
+    filter: brightness(0.9);
+  }
 `;
 
 export const SwitchSlider = styled.div`

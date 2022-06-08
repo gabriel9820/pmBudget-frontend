@@ -11,12 +11,14 @@ export const Container = styled.button<IProps>`
   background: ${({ theme }) => theme.colors.secondary};
   color: ${({ theme }) => theme.colors.textSecondary};
   border-radius: 0.25rem;
-  border: 0;
+  border: none;
+  outline: none;
   font-size: 1rem;
   font-weight: 600;
   transition: filter 0.2s;
 
-  &:hover {
+  &:hover,
+  &:focus {
     filter: brightness(0.9);
   }
 `;
