@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
@@ -9,15 +9,21 @@ import { ToggleSwitch } from "../ToggleSwitch";
 import { Button } from "../Button";
 
 import { ICategoryFormFields, categorySchema } from "./schema";
-import { apiExceptionHandler } from "../../utils/exception-handler";
-import { createCategoryAsync } from "../../services/categories.service";
+import { useAppDispatch } from "../../store";
+import { createCategory, updateCategory } from "../../store/categories/actions";
+import { ICategoryOutputModel } from "../../models/category.model";
 
 interface IProps {
   isOpen: boolean;
+  data: ICategoryOutputModel | undefined;
   onRequestClose: () => void;
 }
 
-export const CategoryModal: React.FC<IProps> = ({ isOpen, onRequestClose }) => {
+export const CategoryModal: React.FC<IProps> = ({
+  isOpen,
+  data,
+  onRequestClose,
+}) => {
   const {
     register,
     handleSubmit,
@@ -29,28 +35,38 @@ export const CategoryModal: React.FC<IProps> = ({ isOpen, onRequestClose }) => {
       isActive: true,
     },
   });
+  const dispatch = useAppDispatch();
 
-  const handleCreateCategory = async (data: ICategoryFormFields) => {
-    try {
-      const category = { ...data };
+  useEffect(() => {
+    reset(data);
+  }, [reset, data]);
 
-      await createCategoryAsync(category);
-
-      closeModal();
-    } catch (error) {
-      apiExceptionHandler(error);
-    }
-  };
-
-  const closeModal = () => {
-    reset();
+  const handleCloseModal = () => {
+    reset({ isActive: true });
     onRequestClose();
   };
 
+  const handleSubmitCategory = async (data: ICategoryFormFields) => {
+    const category = { ...data };
+
+    category.id
+      ? dispatch(updateCategory(category))
+      : dispatch(createCategory(category));
+
+    handleCloseModal();
+  };
+
   return (
-    <CustomModal isOpen={isOpen} onRequestClose={closeModal}>
-      <Container onSubmit={handleSubmit(handleCreateCategory)}>
-        <h2>Cadastrar Categoria</h2>
+    <CustomModal isOpen={isOpen} onRequestClose={handleCloseModal}>
+      <Container onSubmit={handleSubmit(handleSubmitCategory)}>
+        <h2>Categoria</h2>
+
+        <CustomInput
+          register={register("id")}
+          errors={errors.id}
+          placeholder="ID"
+          readOnly
+        />
 
         <CustomInput
           register={register("name")}
@@ -64,7 +80,7 @@ export const CategoryModal: React.FC<IProps> = ({ isOpen, onRequestClose }) => {
           label="Ativo"
         />
 
-        <Button fullWidth>Cadastrar</Button>
+        <Button fullWidth>Salvar</Button>
       </Container>
     </CustomModal>
   );

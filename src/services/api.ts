@@ -1,10 +1,10 @@
 import axios from "axios";
 
 export const api = axios.create({
-  baseURL: "https://localhost:7047/api",
+  baseURL: "http://localhost:5047/api",
 });
 
-/* adiciona o accessToken em cada request */
+/* add accessToken on every request */
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("acessToken");

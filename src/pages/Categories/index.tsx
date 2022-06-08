@@ -10,7 +10,9 @@ import {
   ICategoryInputModel,
   ICategoryOutputModel,
 } from "../../models/category.model";
-import { getAllCategoriesAsync } from "../../services/categories.service";
+import { useSelector } from "react-redux";
+import { AppState, useAppDispatch } from "../../store";
+import { deleteCategoryById, getAllCategories } from "../../store/categories/actions";
 
 const columns: Column<ICategoryOutputModel>[] = [
   {
@@ -27,37 +29,36 @@ const columns: Column<ICategoryOutputModel>[] = [
 ];
 
 export const CategoriesPage = () => {
-  const [categories, setCategories] = useState<ICategoryOutputModel[]>([]);
-  const [isCategoryModalOpen, setIsCategoryModalOpen] = useState(false);
+  const dispatch = useAppDispatch();
+  const { categories } = useSelector((state: AppState) => state.categories);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editItem, setEditItem] = useState<ICategoryOutputModel>();
 
   useEffect(() => {
-    const getAllCategories = async () => {
-      const { data: apiResponse } = await getAllCategoriesAsync();
-      setCategories(apiResponse.data);
-    };
-
-    getAllCategories();
-  }, []);
+    dispatch(getAllCategories());
+  }, [dispatch]);
 
   const editCategory = (data: ICategoryInputModel) => {
-    console.log(data);
+    setEditItem(data);
+    handleOpenModal();
   };
 
   const deleteCategory = (data: ICategoryInputModel) => {
-    console.log(data);
+    dispatch(deleteCategoryById(data.id))
   };
 
-  const handleOpenCategoryModal = () => {
-    setIsCategoryModalOpen(true);
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
   };
 
-  const handleCloseCategoryModal = () => {
-    setIsCategoryModalOpen(false);
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setEditItem(undefined);
   };
 
   return (
     <div>
-      <PageTitle onNewClick={handleOpenCategoryModal}>Categorias</PageTitle>
+      <PageTitle onNewClick={handleOpenModal}>Categorias</PageTitle>
 
       <Table
         columns={columns}
@@ -67,8 +68,9 @@ export const CategoriesPage = () => {
       />
 
       <CategoryModal
-        isOpen={isCategoryModalOpen}
-        onRequestClose={handleCloseCategoryModal}
+        isOpen={isModalOpen}
+        data={editItem}
+        onRequestClose={handleCloseModal}
       />
     </div>
   );
