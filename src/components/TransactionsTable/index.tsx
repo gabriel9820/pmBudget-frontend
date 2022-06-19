@@ -1,20 +1,16 @@
-import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { Column } from "react-table";
 
 import { ValueCell } from "./styles";
 import { Table } from "../Table";
 
-import {
-  deleteTransactionByIdAsync,
-  getAllTransactionsAsync,
-} from "../../services/transactions.service";
 import { formatDate, formatMoney } from "../../utils/format";
 import {
-  ITransactionInputModel,
   ITransactionOutputModel,
   TransactionType,
 } from "../../models/transaction.model";
-import { apiExceptionHandler } from "../../utils/exception-handler";
+import { AppState, useAppDispatch } from "../../store";
+import { deleteTransactionById } from "../../store/transactions/actions";
 
 const columns: Column<ITransactionOutputModel>[] = [
   {
@@ -43,25 +39,11 @@ const columns: Column<ITransactionOutputModel>[] = [
 ];
 
 export const TransactionsTable = () => {
-  const [transactions, setTransactions] = useState<ITransactionOutputModel[]>(
-    []
-  );
+  const dispatch = useAppDispatch();
+  const { transactions } = useSelector((state: AppState) => state.transactions);
 
-  useEffect(() => {
-    const getAllTransactions = async () => {
-      const { data: apiResponse } = await getAllTransactionsAsync();
-      setTransactions(apiResponse.data);
-    };
-
-    getAllTransactions();
-  }, []);
-
-  const deleteTransaction = async (data: ITransactionInputModel) => {
-    try {
-      await deleteTransactionByIdAsync(data.id);
-    } catch (error) {
-      apiExceptionHandler(error);
-    }
+  const deleteTransaction = (data: ITransactionOutputModel) => {
+    dispatch(deleteTransactionById(data.id));
   };
 
   return (

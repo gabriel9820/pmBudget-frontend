@@ -6,13 +6,13 @@ import { Table } from "../../components/Table";
 import { StatusCell } from "../../components/Table/StatusCell";
 import { CategoryModal } from "../../components/CategoryModal";
 
-import {
-  ICategoryInputModel,
-  ICategoryOutputModel,
-} from "../../models/category.model";
+import { ICategoryOutputModel } from "../../models/category.model";
 import { useSelector } from "react-redux";
 import { AppState, useAppDispatch } from "../../store";
-import { deleteCategoryById, getAllCategories } from "../../store/categories/actions";
+import {
+  deleteCategoryById,
+  getAllCategories,
+} from "../../store/categories/actions";
 
 const columns: Column<ICategoryOutputModel>[] = [
   {
@@ -38,13 +38,13 @@ export const CategoriesPage = () => {
     dispatch(getAllCategories());
   }, [dispatch]);
 
-  const editCategory = (data: ICategoryInputModel) => {
+  const editCategory = (data: ICategoryOutputModel) => {
     setEditItem(data);
     handleOpenModal();
   };
 
-  const deleteCategory = (data: ICategoryInputModel) => {
-    dispatch(deleteCategoryById(data.id))
+  const deleteCategory = (data: ICategoryOutputModel) => {
+    dispatch(deleteCategoryById(data.id));
   };
 
   const handleOpenModal = () => {

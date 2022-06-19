@@ -1,7 +1,10 @@
 import { createAction } from "@reduxjs/toolkit";
 
 // import { AppDispatch } from "..";
-import { ICategoryOutputModel } from "../../models/category.model";
+import {
+  ICategoryInputModel,
+  ICategoryOutputModel,
+} from "../../models/category.model";
 import {
   createCategoryAsync,
   deleteCategoryByIdAsync,
@@ -23,7 +26,7 @@ export const getAllCategories = () => {
   };
 };
 
-export const createCategory = (category: ICategoryOutputModel) => {
+export const createCategory = (category: ICategoryInputModel) => {
   return async (dispatch: any) => {
     try {
       await createCategoryAsync(category);
@@ -39,10 +42,10 @@ export const createCategory = (category: ICategoryOutputModel) => {
   };
 };
 
-export const updateCategory = (category: ICategoryOutputModel) => {
+export const updateCategory = (category: ICategoryInputModel) => {
   return async (dispatch: any) => {
     try {
-      await updateCategoryAsync(category.id, category);
+      await updateCategoryAsync(Number(category.id), category);
       dispatch(getAllCategories());
 
       // Alerta({

@@ -15,8 +15,8 @@ import { CustomInput } from "../CustomInput";
 import { Button } from "../Button";
 
 import { INewTransactionFormFields, newTransactionSchema } from "./schema";
-import { createTransactionAsync } from "../../services/transactions.service";
-import { apiExceptionHandler } from "../../utils/exception-handler";
+import { useAppDispatch } from "../../store";
+import { createTransaction } from "../../store/transactions/actions";
 
 interface IProps {
   isOpen: boolean;
@@ -35,6 +35,7 @@ export const NewTransactionModal: React.FC<IProps> = ({
   } = useForm<INewTransactionFormFields>({
     resolver: yupResolver(newTransactionSchema),
   });
+  const dispatch = useAppDispatch();
   const [type, setType] = useState("income");
 
   useEffect(() => {
@@ -43,24 +44,20 @@ export const NewTransactionModal: React.FC<IProps> = ({
     }
   }, [isSubmitSuccessful, reset]);
 
-  const handleCreateNewTransaction = async (data: any) => {
-    try {
-      const transaction = {
-        ...data,
-        type: type === "income" ? 1 : 2,
-      };
+  const handleSubmitTransaction = async (data: INewTransactionFormFields) => {
+    const transaction = {
+      ...data,
+      id: undefined,
+      type: type === "income" ? 1 : 2,
+    };
 
-      await createTransactionAsync(transaction);
-
-      onRequestClose();
-    } catch (error) {
-      apiExceptionHandler(error);
-    }
+    dispatch(createTransaction(transaction));
+    onRequestClose();
   };
 
   return (
     <CustomModal isOpen={isOpen} onRequestClose={onRequestClose}>
-      <Container onSubmit={handleSubmit(handleCreateNewTransaction)}>
+      <Container onSubmit={handleSubmit(handleSubmitTransaction)}>
         <h2>Cadastrar Transação</h2>
 
         <CustomInput

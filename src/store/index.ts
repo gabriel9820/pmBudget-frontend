@@ -16,6 +16,7 @@ import authReducer from "./auth";
 import { IPreferencesReducerProps } from "./preferences/constants";
 import preferencesReducer from "./preferences";
 import categoriesReducer from "./categories";
+import transactionsReducer from "./transactions";
 
 const preferencesPersistConfig = {
   key: "preferences",
@@ -32,6 +33,7 @@ const store = configureStore({
     auth: authReducer,
     preferences: preferencesPersistedReducer,
     categories: categoriesReducer,
+    transactions: transactionsReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

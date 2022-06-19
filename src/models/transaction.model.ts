@@ -1,5 +1,4 @@
 interface ITransaction {
-  id: number;
   date: Date;
   title: string;
   type: TransactionType;
@@ -12,6 +11,16 @@ export enum TransactionType {
   Expense = 2,
 }
 
-export interface ITransactionInputModel extends ITransaction {}
+export interface ITransactionInputModel extends ITransaction {
+  id: number | undefined;
+}
 
-export interface ITransactionOutputModel extends ITransaction {}
+export interface ITransactionOutputModel extends ITransaction {
+  id: number;
+}
+
+export interface ISummaryOutputModel {
+  incomes: number;
+  expenses: number;
+  balance: number;
+}

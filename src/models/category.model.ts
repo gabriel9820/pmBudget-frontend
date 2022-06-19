@@ -1,9 +1,12 @@
 interface ICategory {
-  id: number;
   name: string;
   isActive: boolean;
 }
 
-export interface ICategoryInputModel extends ICategory {}
+export interface ICategoryInputModel extends ICategory {
+  id: number | undefined;
+}
 
-export interface ICategoryOutputModel extends ICategory {}
+export interface ICategoryOutputModel extends ICategory {
+  id: number;
+}
