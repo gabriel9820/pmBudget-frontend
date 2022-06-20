@@ -14,8 +14,17 @@ import { deleteTransactionById } from "../../store/transactions/actions";
 
 const columns: Column<ITransactionOutputModel>[] = [
   {
+    Header: "Data",
+    accessor: "date",
+    Cell: ({ value }) => formatDate(value),
+  },
+  {
     Header: "Título",
     accessor: "title",
+  },
+  {
+    Header: "Categoria",
+    accessor: "category",
   },
   {
     Header: "Valor",
@@ -26,16 +35,7 @@ const columns: Column<ITransactionOutputModel>[] = [
 
       return <ValueCell className={className}>{formatMoney(value)}</ValueCell>;
     },
-  },
-  {
-    Header: "Categoria",
-    accessor: "category",
-  },
-  {
-    Header: "Data",
-    accessor: "date",
-    Cell: ({ value }) => formatDate(value),
-  },
+  },  
 ];
 
 export const TransactionsTable = () => {
