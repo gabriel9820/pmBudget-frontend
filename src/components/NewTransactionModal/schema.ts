@@ -1,4 +1,5 @@
 import * as yup from "yup";
+import { IBaseSelectOption } from "../Select/BaseSelect";
 
 export const newTransactionSchema = yup.object().shape({
   date: yup
@@ -9,20 +10,17 @@ export const newTransactionSchema = yup.object().shape({
     .string()
     .required("Título é obrigatório")
     .max(200, "Título deve conter no máximo 200 caracteres"),
+  category: yup.string().required("Categoria é obrigatório"),
   value: yup
     .number()
     .required("Valor é obrigatório")
     .typeError("Valor deve ser numérico")
     .moreThan(0, "Valor deve ser maior que 0"),
-  category: yup
-    .string()
-    .required("Categoria é obrigatório")
-    .max(100, "Categoria deve conter no máximo 100 caracteres"),
 });
 
 export interface INewTransactionFormFields {
   date: Date;
   title: string;
-  value: number;
   category: string;
+  value: number;
 }

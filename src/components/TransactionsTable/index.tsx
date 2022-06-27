@@ -25,6 +25,7 @@ const columns: Column<ITransactionOutputModel>[] = [
   {
     Header: "Categoria",
     accessor: "category",
+    Cell: ({ value }) => value.name,
   },
   {
     Header: "Valor",
@@ -35,7 +36,7 @@ const columns: Column<ITransactionOutputModel>[] = [
 
       return <ValueCell className={className}>{formatMoney(value)}</ValueCell>;
     },
-  },  
+  },
 ];
 
 export const TransactionsTable = () => {

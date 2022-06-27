@@ -13,6 +13,7 @@ import {
 import { CustomModal } from "../CustomModal";
 import { CustomInput } from "../CustomInput";
 import { Button } from "../Button";
+import { CategoriesSelect } from "../Select/CategoriesSelect";
 
 import { INewTransactionFormFields, newTransactionSchema } from "./schema";
 import { useAppDispatch } from "../../store";
@@ -44,10 +45,13 @@ export const NewTransactionModal: React.FC<IProps> = ({
     }
   }, [isSubmitSuccessful, reset]);
 
-  const handleSubmitTransaction = async (data: INewTransactionFormFields) => {
+  const handleSubmitTransaction = async (form: INewTransactionFormFields) => {
     const transaction = {
-      ...data,
       id: undefined,
+      date: form.date,
+      title: form.title,
+      categoryId: parseInt(form.category),
+      value: form.value,
       type: type === "income" ? 1 : 2,
     };
 
@@ -102,10 +106,9 @@ export const NewTransactionModal: React.FC<IProps> = ({
           </TransactionTypeButton>
         </TransactionTypeContainer>
 
-        <CustomInput
+        <CategoriesSelect
           register={register("category")}
           errors={errors.category}
-          placeholder="Categoria"
         />
 
         <Button fullWidth>Cadastrar</Button>

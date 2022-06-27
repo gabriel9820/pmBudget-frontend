@@ -1,9 +1,10 @@
+import { ICategoryOutputModel } from "./category.model";
+
 interface ITransaction {
   date: Date;
   title: string;
   type: TransactionType;
   value: number;
-  category: string;
 }
 
 export enum TransactionType {
@@ -13,10 +14,12 @@ export enum TransactionType {
 
 export interface ITransactionInputModel extends ITransaction {
   id: number | undefined;
+  categoryId: number;
 }
 
 export interface ITransactionOutputModel extends ITransaction {
   id: number;
+  category: ICategoryOutputModel;
 }
 
 export interface ISummaryOutputModel {
